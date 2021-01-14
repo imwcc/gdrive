@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"math"
 	"os"
+	"path"
 	"path/filepath"
 	"strconv"
 	"strings"
@@ -115,12 +116,19 @@ func truncateString(str string, maxRunes int) string {
 	return truncated
 }
 
-func fileExists(path string) bool {
-	_, err := os.Stat(path)
+func fileExists(_path string) bool {
+	_, err := os.Stat(_path)
 	if err == nil {
 		return true
 	}
 	return false
+}
+
+func getFileSuffix(_path string) string {
+	var filenameWithSuffix,fileSuffix string
+	filenameWithSuffix = path.Base(_path)
+	fileSuffix = path.Ext(filenameWithSuffix)
+	return fileSuffix
 }
 
 func mkdir(path string) error {

@@ -5,6 +5,7 @@ import (
 	"io"
 	"os"
 	"path/filepath"
+	"strings"
 	"time"
 
 	"google.golang.org/api/drive/v3"
@@ -185,8 +186,12 @@ func (self *Drive) saveFile(args saveFileArgs) (int64, int64, error) {
 
 	//Check if file exists to skip
 	if args.skip && fileExists(args.fpath) {
-		fmt.Printf("File '%s' already exists, skipping\n", args.fpath)
-		return 0, 0, nil
+		if strings.Contains(getFileSuffix(args.fpath), "xlsx") {
+			fmt.Printf("File '%s' is google doc xlsx, force sync\n", args.fpath)
+		} else {
+			fmt.Printf("File '%s' already exists, skipping\n", args.fpath)
+			return 0, 0, nil
+		}
 	}
 
 	// Ensure any parent directories exists
