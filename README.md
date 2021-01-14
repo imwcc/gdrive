@@ -15,6 +15,14 @@ Version 1.5 or higher.
 
 ## Installation
 ### With [Homebrew](http://brew.sh) on Mac
+
+## Build
+```bash
+4599  2021-01-14 13:54:16  go build -a -v -n -x
+4600  2021-01-14 13:54:29  go build -a -v -n -x |tee list
+4602  2021-01-14 13:54:39  go build -a -v -n -x 2>&1 |tee list
+4604  2021-01-14 13:55:09  cd /home/arvin/go/src/github.com/prasmussen/gdrive/
+4617  2021-01-14 13:56:55  cd /home/arvin/go/src/github.com/prasmussen/gdrive
 ```
 brew install gdrive
 ```
